@@ -12,6 +12,7 @@ import ttm from '../assets/poster-imgs/the-trash-man.png'
 import React, { Component } from 'react';
 import CardFront from './CardFront.js';
 import CardBack from './CardBack.js';
+import movieData from '../data'
 
 
 const posterMap = {
@@ -30,14 +31,22 @@ const posterMap = {
 export default class MovieCard extends Component {
 
   render() {
+    const poster = posterMap[this.props.poster];
+    console.log(this.props);
     return (
       <div className="movie-card">
         {/* which component should receive which props? */}
-        <CardFront />
-        <CardBack />
+        <CardFront poster={poster} />
+        <CardBack title={this.props.title} IMDBRating={this.props.IMDBRating} genres={this.props.genres} />
       </div>
     )
   }
 }
 
+MovieCard.defaultProps = {
+  poster: 'default',
+  title: 'unknown',
+  IMDBRating: null,
+  genres: ['No Genre(s) Found']
+}
 // Don't forget your default props!
